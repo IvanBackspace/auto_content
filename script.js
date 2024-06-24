@@ -24,4 +24,37 @@
             header.id = `title-${headersNum++}`;
         });
     });
+
+    const toggleButton = document.querySelector('.toggle-button');
+
+    toggleButton.addEventListener('click', () => {
+        resultContainer.classList.toggle('expanded');
+        if (resultContainer.classList.contains('expanded')) {
+            toggleButton.textContent = 'Свернуть';
+        } else {
+            toggleButton.textContent = 'Подробнее';
+        }
+    });
+
+    if (resultContainer.scrollHeight <= 210) {
+        toggleButton.style.display = 'none';
+    }
 </script>
+
+<style>
+    .content__items {
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        max-height: 210px;
+    }
+
+    .content__items.expanded {
+        max-height: 1000px;
+    }
+
+    .toggle-button {
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
+    }
+</style>
